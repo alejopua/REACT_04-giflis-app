@@ -4,6 +4,11 @@ import { AddCategory } from "./components/AddCategory";
 export const GiflisApp = () => {
   const [ categories, setCategories ] = useState(['One Punch', 'Samurai X', 'Dragon Ball', 'Naruto', 'Bleach', 'HunterXHunter']);
 
+  const onAddCategory = (newValue) =>{
+    if (categories.includes(newValue)) return;
+    setCategories((cat) => [...cat, newValue]);
+  }
+
   return (
     <>
       {/* Title */}
@@ -11,14 +16,14 @@ export const GiflisApp = () => {
 
       {/* Input */}
       <AddCategory 
-        setCategories={setCategories}
+        onNewCategory={onAddCategory}
       />
 
       {/* List of Gif */}
       
       <ol>
-        { categories.map( (category, index) => {
-          return <li key={index}>{category}</li>
+        { categories.map( (category) => {
+          return <li key={category}>{category}</li>
         })}
       </ol>
 
